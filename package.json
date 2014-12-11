@@ -4,7 +4,7 @@
   "description": "utils for me",
   "main": "yutils.js",
   "scripts": {
-    "test": "echo \"test\""
+    "test": "node test/node.js"
   },
   "repository": {
     "type": "git",

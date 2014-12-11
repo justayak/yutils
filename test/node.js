@@ -2,7 +2,7 @@
  * Created by Julian on 12/10/2014.
  */
 
-var Utils = require("./yutils");
+var Utils = require("./../yutils");
 
 console.log("#1");
 
