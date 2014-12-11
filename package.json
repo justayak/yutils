@@ -1,0 +1,22 @@
+{
+  "name": "yutils",
+  "version": "1.0.0",
+  "description": "utils for me",
+  "main": "yutils.js",
+  "scripts": {
+    "test": "echo \"test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justayak/yutils.git"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "author": "Julian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justayak/yutils/issues"
+  },
+  "homepage": "https://github.com/justayak/yutils"
+}
