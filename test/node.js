@@ -15,3 +15,6 @@ test(1,2);
 console.log(Utils.guid());
 
 console.log(Utils.sample([1,2,3,4,5], 3));
+
+console.log(Utils.isString("hello"));
+console.log(Utils.isString({a:0}));

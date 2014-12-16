@@ -43,6 +43,10 @@
         return result;
     };
 
+    exports.isString = function(myVar) {
+        return (typeof myVar === 'string' || myVar instanceof String)
+    };
+
     exports.assertLength = function (arg, nbr) {
         if (arg.length === nbr) return true;
         else throw new Error("Wrong number of arguments: expected:" + nbr + ", but got: " + arg.length);
