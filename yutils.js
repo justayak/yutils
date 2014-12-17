@@ -80,4 +80,10 @@
         return ms / 1000;
     };
 
+    exports.isDefined = function (o) {
+        if (o === null) return false;
+        if (typeof o === "undefined") return false;
+        return true;
+    };
+
 })(typeof exports === 'undefined' ? this['yUtils'] = {} : exports);

@@ -28,3 +28,7 @@ var tB = Date.now();
 console.log(Utils.timeDifferenceInMs(tA,tB));
 
 console.log("ms to s: " + Utils.msToS(2400));
+
+console.log("f:" + Utils.isDefined(null));
+console.log("f:" + Utils.isDefined(undefined));
+console.log("t:" + Utils.isDefined("hello"));
