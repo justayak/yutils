@@ -62,4 +62,22 @@
         return guid;
     };
 
+    exports.timeDifferenceInMs = function (tsA, tsB) {
+        if (tsA instanceof Date){
+            tsA = tsA.getTime();
+        }
+        if (tsB instanceof Date){
+            tsB = tsB.getTime();
+        }
+        return Math.abs(tsA - tsB);
+    };
+
+    /**
+     * milliseconds to seconds
+     * @param ms {Number} Millis
+     */
+    exports.msToS = function (ms) {
+        return ms / 1000;
+    };
+
 })(typeof exports === 'undefined' ? this['yUtils'] = {} : exports);
