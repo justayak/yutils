@@ -32,3 +32,5 @@ console.log("ms to s: " + Utils.msToS(2400));
 console.log("f:" + Utils.isDefined(null));
 console.log("f:" + Utils.isDefined(undefined));
 console.log("t:" + Utils.isDefined("hello"));
+
+console.log("[0,2,3]: " + Utils.deletePosition([0,1,2,3],1));

@@ -86,4 +86,25 @@
         return true;
     };
 
+    /**
+     * Shallow clone
+     * @param list
+     * @returns {Array|string|Blob}
+     */
+    exports.cloneArray = function (list) {
+        return list.slice(0);
+    }
+
+    /**
+     * removes the item at the position and reindexes the list
+     * @param list
+     * @param i
+     * @returns {*}
+     */
+    exports.deletePosition = function (list, i) {
+        if (i < 0 || i >= list.length) throw new Error("Out of bounds");
+        list.splice(i,1);
+        return list;
+    }
+
 })(typeof exports === 'undefined' ? this['yUtils'] = {} : exports);
