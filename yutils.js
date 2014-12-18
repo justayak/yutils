@@ -124,4 +124,13 @@
         return true;
     };
 
+    /**
+     * Inherit stuff from parent
+     * @param child
+     * @param parent
+     */
+    exports.inherit = function (child, parent) {
+        child.prototype = Object.create(parent.prototype);
+    };
+
 })(typeof exports === 'undefined' ? this['yUtils'] = {} : exports);

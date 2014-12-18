@@ -35,17 +35,27 @@ console.log("t:" + Utils.isDefined("hello"));
 
 console.log("[0,2,3]: " + Utils.deletePosition([0,1,2,3],1));
 
-function Demo() {
+function Duck() {
 
 }
 
-Demo.prototype.quack = function () {};
-Demo.prototype.walk = function () {};
-Demo.prototype.duck = function () {};
+function Animal() {};
+Animal.prototype.drink = function () {};
 
-var demo = new Demo();
+Utils.inherit(Duck, Animal);
+
+Duck.prototype.quack = function () {};
+Duck.prototype.walk = function () {};
+Duck.prototype.duck = function () {};
+
+
+var demo = new Duck();
 
 console.log("t: " + Utils.implements(demo, "quack", "walk", "duck"));
 console.log("f: " + Utils.implements(demo, "quack", "walk", "duck", "lol"));
 console.log("t: " + Utils.implements(demo, ["quack", "walk", "duck"]));
 console.log("f: " + Utils.implements(demo, ["quack", "walk", "duck", "lol"]));
+
+demo = new Duck();
+
+console.log("t: " + Utils.implements(demo, "quack", "walk", "duck", "drink"));

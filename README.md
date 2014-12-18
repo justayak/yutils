@@ -26,6 +26,15 @@ Utils.implements(duck, "quack", "walk"); // -> true
 
 Utils.implements(duck, "bark", "walk"); //  -> false
 
+// Inheritance
+function Animal() {};
+Animal.prototype.drink = function () {};
+
+function Dog(){};
+Utils.inherit(Dog, Animal);
+Dog.prototype.bark = function(){};
+Utils.implements(new Dog(), "drink", "bark");
+
 ```
 
 ###Primitives

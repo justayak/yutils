@@ -1,6 +1,6 @@
 {
   "name": "yutils",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "utils for me",
   "main": "yutils.js",
   "scripts": {
