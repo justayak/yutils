@@ -105,6 +105,20 @@
         if (i < 0 || i >= list.length) throw new Error("Out of bounds");
         list.splice(i,1);
         return list;
-    }
+    };
+
+    /**
+     * Checks weather the the object implements the full interface or not
+     * @param o {Object}
+     */
+    exports.implements = function (o) {
+        var i = 1, methodName;
+        while((methodName = arguments[i++])) {
+            if (typeof o[methodName] !== "function") {
+                return false;
+            }
+        }
+        return true;
+    };
 
 })(typeof exports === 'undefined' ? this['yUtils'] = {} : exports);

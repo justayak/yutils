@@ -34,3 +34,16 @@ console.log("f:" + Utils.isDefined(undefined));
 console.log("t:" + Utils.isDefined("hello"));
 
 console.log("[0,2,3]: " + Utils.deletePosition([0,1,2,3],1));
+
+function Demo() {
+
+}
+
+Demo.prototype.quack = function () {};
+Demo.prototype.walk = function () {};
+Demo.prototype.duck = function () {};
+
+var demo = new Demo();
+
+console.log("t: " + Utils.implements(demo, "quack", "walk", "duck"));
+console.log("f: " + Utils.implements(demo, "quack", "walk", "duck", "lol"));
