@@ -111,7 +111,10 @@
      * Checks weather the the object implements the full interface or not
      * @param o {Object}
      */
-    exports.implements = function (o) {
+    var implements = exports.implements = function (o, a) {
+        if (Array.isArray(a)) {
+            return implements.apply({},[o].concat(a));
+        }
         var i = 1, methodName;
         while((methodName = arguments[i++])) {
             if (typeof o[methodName] !== "function") {

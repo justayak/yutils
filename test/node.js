@@ -47,3 +47,5 @@ var demo = new Demo();
 
 console.log("t: " + Utils.implements(demo, "quack", "walk", "duck"));
 console.log("f: " + Utils.implements(demo, "quack", "walk", "duck", "lol"));
+console.log("t: " + Utils.implements(demo, ["quack", "walk", "duck"]));
+console.log("f: " + Utils.implements(demo, ["quack", "walk", "duck", "lol"]));

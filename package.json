@@ -1,10 +1,11 @@
 {
   "name": "yutils",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "utils for me",
   "main": "yutils.js",
   "scripts": {
-    "test": "node test/node.js"
+    "test": "node test/node.js",
+    "build": "browserify yutils.js --s Utils | uglifyjs > build/yutils.bundle.js"
   },
   "repository": {
     "type": "git",
