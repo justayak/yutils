@@ -43,7 +43,7 @@
         return result;
     };
 
-    exports.isString = function(myVar) {
+    var isString = exports.isString = function(myVar) {
         return (typeof myVar === 'string' || myVar instanceof String)
     };
 
@@ -93,7 +93,7 @@
      */
     exports.cloneArray = function (list) {
         return list.slice(0);
-    }
+    };
 
     /**
      * removes the item at the position and reindexes the list
@@ -124,6 +124,54 @@
         return true;
     };
 
+    var isNumber = exports.isNumber = function (o) {
+        if (isString(o)) return false;
+        return ! isNaN(o-0) && o !== null && typeof o !== 'undefined' && o !== false;
+    };
+
+    function not(l) {
+        return !l;
+    }
+
+    /**
+     * Checks if the object equals the definition
+     * @param obj {Object}
+     * @param definition {Object} {
+     *      'key1': String,
+     *      'key2': AnyClass,
+     *      'key3': Number
+     *
+     * }
+     * @returns {boolean}
+     */
+    exports.defines = function (obj, definition) {
+        var key = null, type;
+        for (key in definition) {
+            type = definition[key];
+            switch (type) {
+                case String:
+                    if (not(isString(obj[key]))) {
+                        console.error('object@' + key +' does not implement ' + type + ':', obj);
+                        return false;
+                    }
+                    break;
+                case Number:
+                    if(not(isNumber(obj[key]))) {
+                        console.error('object@' + key +' does not implement ' + type + ':', obj);
+                        return false
+                    }
+                    break;
+                default:
+                    if (not(obj[key] instanceof type)) {
+                        console.error('object@' + key +' does not implement ' + type + ':', obj);
+                        return false;
+                    }
+                    break;
+            }
+        }
+        return true;
+    };
+
     /**
      * Inherit stuff from parent
      * @param child
@@ -132,5 +180,6 @@
     exports.inherit = function (child, parent) {
         child.prototype = Object.create(parent.prototype);
     };
+
 
 })(typeof exports === 'undefined' ? this['yUtils'] = {} : exports);

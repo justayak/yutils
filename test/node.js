@@ -59,3 +59,45 @@ console.log("f: " + Utils.implements(demo, ["quack", "walk", "duck", "lol"]));
 demo = new Duck();
 
 console.log("t: " + Utils.implements(demo, "quack", "walk", "duck", "drink"));
+
+console.log('true ', Utils.isNumber(12));
+
+console.log('true ', Utils.isNumber(12.2));
+
+console.log('false ', Utils.isNumber('12'));
+
+console.log('false ', Utils.isNumber(''));
+
+console.log('false ', Utils.isNumber(null));
+
+console.log('false ', Utils.isNumber(undefined));
+
+console.log('false ', Utils.isNumber({ hello: "222"}));
+
+var definition = {
+    a : Number,
+    b : Number,
+    c : String,
+    d : Duck
+};
+
+var obj1 = {
+    qq : "qq",
+    a : 23,
+    b : -332.1,
+    c : 'Hello world',
+    d : new Duck()
+};
+
+var obj2 = {
+    qq : "qq",
+    a : 23,
+    b : -332.1,
+    c : 'Hello world',
+    d : '11'
+};
+
+
+console.log('def: true', Utils.defines(obj1,definition));
+
+console.log('def: false', Utils.defines(obj2,definition));
