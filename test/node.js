@@ -81,6 +81,13 @@ var definition = {
     d : Duck
 };
 
+var definitionWrong = {
+    a : Number,
+    b : Number,
+    c : String,
+    d : String
+};
+
 var obj1 = {
     qq : "qq",
     a : 23,
@@ -97,7 +104,23 @@ var obj2 = {
     d : '11'
 };
 
+var obj3 = {
+    qq : "qq",
+    a : 1,
+    b : -332.1,
+    c : 'Hello world',
+    d : new Duck()
+};
+
 
 console.log('def: true', Utils.defines(obj1,definition));
 
 console.log('def: false', Utils.defines(obj2,definition));
+
+var list = [obj1, obj3];
+console.log('[def] true', Utils.defines(list,definition));
+
+console.log('[def] false', Utils.defines(list,definitionWrong));
+
+list = [obj1,obj2, obj3];
+console.log('[def] false', Utils.defines(list,definition));

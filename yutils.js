@@ -11,7 +11,7 @@
         perf = performance;
     }
 
-    perf.now = perf.now || perf.mozNow || perf.msNow ||  perf.oNow || perf.webkitNow || Date.now ||
+    perf.now = perf.now || perf.mozNow || perf.msNow || perf.oNow || perf.webkitNow || Date.now ||
         function () {
             return new Date().getTime();
         };
@@ -25,25 +25,25 @@
     }
 
     /*
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      */
 
     var getRandomInt = exports.getRandomInt = function (min, max) {
-        if (min > max) throw new Error("min must be smaller than max! {" + min + ">" + max + "}" );
+        if (min > max) throw new Error("min must be smaller than max! {" + min + ">" + max + "}");
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
     exports.sample = function (list, n) {
-        var result = [], j,i = 0, L = n > list.length ? list.length : n, s = list.length - 1;
-        for(;i<L;i++) {
-            j = getRandomInt(i,s);
-            swap(list,i,j);
+        var result = [], j, i = 0, L = n > list.length ? list.length : n, s = list.length - 1;
+        for (; i < L; i++) {
+            j = getRandomInt(i, s);
+            swap(list, i, j);
             result.push(list[i]);
         }
         return result;
     };
 
-    var isString = exports.isString = function(myVar) {
+    var isString = exports.isString = function (myVar) {
         return (typeof myVar === 'string' || myVar instanceof String)
     };
 
@@ -63,10 +63,10 @@
     };
 
     exports.timeDifferenceInMs = function (tsA, tsB) {
-        if (tsA instanceof Date){
+        if (tsA instanceof Date) {
             tsA = tsA.getTime();
         }
-        if (tsB instanceof Date){
+        if (tsB instanceof Date) {
             tsB = tsB.getTime();
         }
         return Math.abs(tsA - tsB);
@@ -103,7 +103,7 @@
      */
     exports.deletePosition = function (list, i) {
         if (i < 0 || i >= list.length) throw new Error("Out of bounds");
-        list.splice(i,1);
+        list.splice(i, 1);
         return list;
     };
 
@@ -113,10 +113,10 @@
      */
     var implements = exports.implements = function (o, a) {
         if (Array.isArray(a)) {
-            return implements.apply({},[o].concat(a));
+            return implements.apply({}, [o].concat(a));
         }
         var i = 1, methodName;
-        while((methodName = arguments[i++])) {
+        while ((methodName = arguments[i++])) {
             if (typeof o[methodName] !== "function") {
                 return false;
             }
@@ -126,7 +126,7 @@
 
     var isNumber = exports.isNumber = function (o) {
         if (isString(o)) return false;
-        return ! isNaN(o-0) && o !== null && typeof o !== 'undefined' && o !== false;
+        return !isNaN(o - 0) && o !== null && typeof o !== 'undefined' && o !== false;
     };
 
     function not(l) {
@@ -144,29 +144,38 @@
      * }
      * @returns {boolean}
      */
-    exports.defines = function (obj, definition) {
-        var key = null, type;
-        for (key in definition) {
-            type = definition[key];
-            switch (type) {
-                case String:
-                    if (not(isString(obj[key]))) {
-                        console.error('object@' + key +' does not implement ' + type + ':', obj);
-                        return false;
-                    }
-                    break;
-                case Number:
-                    if(not(isNumber(obj[key]))) {
-                        console.error('object@' + key +' does not implement ' + type + ':', obj);
-                        return false
-                    }
-                    break;
-                default:
-                    if (not(obj[key] instanceof type)) {
-                        console.error('object@' + key +' does not implement ' + type + ':', obj);
-                        return false;
-                    }
-                    break;
+    var defines = exports.defines = function (obj, definition) {
+        var key = null, type, i = 0, L;
+        if (Array.isArray(obj)) {
+            L = obj.length;
+            for (;i<L;i++) {
+                if (!defines(obj[i], definition)) {
+                    return false;
+                }
+            }
+        } else {
+            for (key in definition) {
+                type = definition[key];
+                switch (type) {
+                    case String:
+                        if (not(isString(obj[key]))) {
+                            console.error('object@' + key + ' does not implement ' + type + ':', obj);
+                            return false;
+                        }
+                        break;
+                    case Number:
+                        if (not(isNumber(obj[key]))) {
+                            console.error('object@' + key + ' does not implement ' + type + ':', obj);
+                            return false
+                        }
+                        break;
+                    default:
+                        if (not(obj[key] instanceof type)) {
+                            console.error('object@' + key + ' does not implement ' + type + ':', obj);
+                            return false;
+                        }
+                        break;
+                }
             }
         }
         return true;
