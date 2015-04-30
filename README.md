@@ -67,4 +67,16 @@ Utils.isString({test: 2}); //   -> false
 // Delete the position in an array
 var list = Utils.deletePosition([0,1,2,3],1)); // -> [0,2,3]
 
+// Execute lists of functions:
+
+var cbs = [function() {console.log("a");}, function () {console.log("b");}];
+
+Utils.executeCallbacks(cbs); // will print "a" and then "b" on the console
+
+cbs = [function(a, b) {console.log(a + b);}, function (a, b) {console.log(a + b + "2");}];
+
+Utils.executeCallbacks(cbs, "q", "a"); // will print "qa" and then "qa2" on the console
+
+
+
 ```

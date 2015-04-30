@@ -124,3 +124,14 @@ console.log('[def] false', Utils.defines(list,definitionWrong));
 
 list = [obj1,obj2, obj3];
 console.log('[def] false', Utils.defines(list,definition));
+
+
+var cbs = [function() {console.log("a");}, function () {console.log("b");}];
+
+console.log("a & b?");
+Utils.executeCallbacks(cbs);
+
+cbs = [function(a, b) {console.log(a + b);}, function (a, b) {console.log(a + b + "2");}];
+
+console.log("qa & qa2?");
+Utils.executeCallbacks(cbs, "q", "a");

@@ -190,5 +190,26 @@
         child.prototype = Object.create(parent.prototype);
     };
 
+    /**
+     *
+     * @param callbacks
+     */
+    exports.executeCallbacks = function (callbacks) {
+        var args = null;
+        if (arguments.length > 1) {
+            args = Array.prototype.slice.call(arguments, 1, arguments.length);
+        }
+        var i = 0, L = callbacks.length;
+        if (args == null) {
+            for (; i < L; i++) {
+                callbacks[i]();
+            }
+        } else {
+            for (; i < L; i++) {
+                callbacks[i].apply(this, args);
+            }
+        }
+    };
+
 
 })(typeof exports === 'undefined' ? this['yUtils'] = {} : exports);
